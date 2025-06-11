@@ -1,0 +1,8 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "pdf-parse": "^1.1.1",
+    "zod": "^3.25.61"
+  }
+}
