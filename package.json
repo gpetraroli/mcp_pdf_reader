@@ -1,8 +1,22 @@
 {
+  "name": "mcp-gp-pdf-reader",
+  "version": "1.0.0",
+  "description": "A Model Context Protocol server for advanced PDF text extraction and analysis",
   "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "echo \"No tests specified yet\" && exit 0"
+  },
+  "keywords": ["mcp", "pdf", "text-extraction", "model-context-protocol"],
+  "author": "Giuseppe Petraroli",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",
     "pdf-parse": "^1.1.1",
     "zod": "^3.25.61"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

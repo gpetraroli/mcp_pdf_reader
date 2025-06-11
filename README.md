@@ -1,12 +1,24 @@
-# MCP PDF Reader
+# MCP PDF Reader Enhanced
 
-A Model Context Protocol (MCP) server that provides PDF text extraction functionality.
+A comprehensive Model Context Protocol (MCP) server that provides advanced PDF text extraction, search, and analysis functionality.
 
 ## Features
 
-- Extract text content from PDF files
-- Retrieve PDF metadata (title, author, pages, etc.)
-- Error handling for invalid files and paths
+### Core Functionality
+- ✅ **Text Extraction**: Extract text content from PDF files with customizable options
+- ✅ **Text Search**: Search for specific text within PDFs with advanced options
+- ✅ **Metadata Extraction**: Retrieve comprehensive PDF metadata
+- ✅ **Page-specific Processing**: Extract content from specific page ranges
+- ✅ **Text Cleaning**: Normalize and clean extracted text
+- ✅ **File Size Limits**: Protection against overly large files (50MB limit)
+- ✅ **Async Processing**: Non-blocking file operations
+
+### Advanced Features
+- 🔄 **Multiple Tools**: 4 specialized tools for different PDF operations
+- 🔍 **Smart Search**: Case-sensitive, whole-word, and regex search options
+- 📊 **Rich Metadata**: Extract author, title, creation date, keywords, and more
+- ⚡ **Performance**: Efficient processing with size limits and error handling
+- 🛡️ **Security**: File validation and path sanitization
 
 ## Installation
 
@@ -14,47 +26,183 @@ A Model Context Protocol (MCP) server that provides PDF text extraction function
 npm install
 ```
 
-## Usage
+## Tools Available
 
-This is an MCP server designed to be used with MCP-compatible clients. The server provides a `read-pdf` tool that accepts a file path and returns extracted text and metadata.
-
-### Tool: `read-pdf`
+### 1. `read-pdf` - Enhanced PDF Reading
+Extract text from PDF files with customizable options.
 
 **Parameters:**
-- `file` (string): Path to the PDF file to extract text from
+- `file` (string, required): Path to the PDF file
+- `pages` (string, optional): Page range (e.g., '1-5', '1,3,5', 'all'). Default: 'all'
+- `include_metadata` (boolean, optional): Include PDF metadata. Default: true
+- `clean_text` (boolean, optional): Clean and normalize text. Default: false
+
+**Example Usage:**
+```javascript
+// Basic extraction
+{ "file": "/path/to/document.pdf" }
+
+// Extract with clean text and no metadata
+{ 
+  "file": "/path/to/document.pdf", 
+  "clean_text": true, 
+  "include_metadata": false 
+}
+```
+
+### 2. `search-pdf` - Search Within PDFs
+Search for specific text within PDF documents.
+
+**Parameters:**
+- `file` (string, required): Path to the PDF file
+- `query` (string, required): Text to search for
+- `case_sensitive` (boolean, optional): Case sensitive search. Default: false
+- `whole_word` (boolean, optional): Match whole words only. Default: false
+
+**Example Usage:**
+```javascript
+// Case-insensitive search
+{ "file": "/path/to/document.pdf", "query": "important term" }
+
+// Whole word, case-sensitive search
+{ 
+  "file": "/path/to/document.pdf", 
+  "query": "API", 
+  "case_sensitive": true, 
+  "whole_word": true 
+}
+```
+
+### 3. `pdf-metadata` - Extract Metadata Only
+Get comprehensive metadata from PDF files without extracting text.
+
+**Parameters:**
+- `file` (string, required): Path to the PDF file
 
 **Returns:**
-- Extracted text content
-- Number of pages
-- PDF metadata (author, title, creation date, etc.)
-
-## Dependencies
-
-- `@modelcontextprotocol/sdk`: MCP SDK for server implementation
-- `pdf-parse`: PDF text extraction library
-- `zod`: Runtime type validation
+- Filename, file size, page count
+- Author, title, subject, creator, producer
+- Creation/modification dates, keywords
+- Encryption status, PDF version
 
 ## Configuration
 
 ### Cursor Integration
 
-To use this MCP server with Cursor, add the following configuration to your Cursor settings:
+Add to your Cursor settings:
 
 ```json
 {
   "mcp": {
     "servers": {
-        "mcp-gp-pdf-reader": {
+      "mcp-gp-pdf-reader": {
         "command": "node",
-        "args": ["<path-to-this-project>/index.js"]
-        }
+        "args": ["/absolute/path/to/mcp_gp_pdf_reader/index.js"]
+      }
     }
   }
 }
 ```
 
-Replace `/path/to/mcp_gp_pdf_reader` with the actual path to your project directory.
+### Advanced Configuration
 
-## Running
+The server includes a `config.js` file for advanced settings:
 
-The server uses stdio transport and is typically invoked by MCP clients rather than run directly. # pdf-reader-mcp
+```javascript
+// File size limits, text processing options
+// Search parameters, output formatting
+// Performance and security settings
+// Feature toggles for future enhancements
+```
+
+## Error Handling
+
+The server includes comprehensive error handling for:
+- ❌ File not found errors
+- ❌ Invalid file extensions
+- ❌ File size limits exceeded
+- ❌ Corrupted or unreadable PDFs
+- ❌ Memory and processing errors
+
+## Performance Considerations
+
+- **File Size Limit**: 50MB maximum per PDF
+- **Search Results**: Limited to first 20 matches for performance
+- **Async Operations**: All file operations are non-blocking
+- **Memory Management**: Efficient buffer handling for large files
+
+## Dependencies
+
+### Core Dependencies
+- `@modelcontextprotocol/sdk`: MCP framework
+- `pdf-parse`: PDF text extraction
+- `zod`: Runtime type validation
+
+### Optional Dependencies (Future Features)
+- `pdf2pic`: Convert PDF pages to images
+- `tesseract.js`: OCR for scanned PDFs
+
+## Future Enhancements
+
+### Planned Features
+- 🔮 **OCR Support**: Extract text from scanned/image-based PDFs
+- 🔮 **Image Extraction**: Extract images from PDF documents
+- 🔮 **Table Detection**: Identify and extract tabular data
+- 🔮 **Form Data**: Extract form fields and values
+- 🔮 **Password Support**: Handle password-protected PDFs
+- 🔮 **Batch Processing**: Process multiple PDFs simultaneously
+- 🔮 **Caching**: Cache parsed results for better performance
+- 🔮 **Page-by-Page**: True page-specific text extraction
+
+### Technical Improvements
+- 🔧 **Streaming**: Handle very large PDFs with streaming
+- 🔧 **Progress Tracking**: Progress indicators for long operations
+- 🔧 **Resource Management**: Better memory usage optimization
+- 🔧 **Configuration API**: Runtime configuration updates
+
+## Usage Examples
+
+### Basic Text Extraction
+```bash
+# Via MCP client
+"Extract all text from /documents/report.pdf"
+```
+
+### Searching PDFs
+```bash
+# Via MCP client  
+"Search for 'quarterly results' in /documents/financial-report.pdf"
+```
+
+### Getting Metadata
+```bash
+# Via MCP client
+"Get metadata from /documents/contract.pdf"
+```
+
+## Development
+
+### Scripts
+```bash
+npm start          # Run the server
+npm run dev        # Run with auto-reload
+npm test           # Run tests (placeholder)
+```
+
+### Requirements
+- Node.js 18.0.0 or higher
+- Memory: Sufficient for PDF file size + processing overhead
+- Storage: Temporary space for file operations
+
+## Contributing
+
+This MCP server is designed to be extensible. Key areas for contribution:
+- Additional PDF processing libraries integration
+- Performance optimizations
+- New extraction features
+- Better error handling
+- Test coverage
+
+## License
+
+MIT License
