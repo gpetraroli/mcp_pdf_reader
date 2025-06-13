@@ -104,44 +104,6 @@ Add to your Cursor settings:
 }
 ```
 
-### Advanced Configuration
-
-The server includes a `config.js` file for advanced settings:
-
-```javascript
-// File size limits, text processing options
-// Search parameters, output formatting
-// Performance and security settings
-// Feature toggles for future enhancements
-```
-
-## Error Handling
-
-The server includes comprehensive error handling for:
-- ❌ File not found errors
-- ❌ Invalid file extensions
-- ❌ File size limits exceeded
-- ❌ Corrupted or unreadable PDFs
-- ❌ Memory and processing errors
-
-## Performance Considerations
-
-- **File Size Limit**: 50MB maximum per PDF
-- **Search Results**: Limited to first 20 matches for performance
-- **Async Operations**: All file operations are non-blocking
-- **Memory Management**: Efficient buffer handling for large files
-
-## Dependencies
-
-### Core Dependencies
-- `@modelcontextprotocol/sdk`: MCP framework
-- `pdf-parse`: PDF text extraction
-- `zod`: Runtime type validation
-
-### Optional Dependencies (Future Features)
-- `pdf2pic`: Convert PDF pages to images
-- `tesseract.js`: OCR for scanned PDFs
-
 ## Future Enhancements
 
 ### Planned Features
@@ -181,13 +143,6 @@ The server includes comprehensive error handling for:
 ```
 
 ## Development
-
-### Scripts
-```bash
-npm start          # Run the server
-npm run dev        # Run with auto-reload
-npm test           # Run tests (placeholder)
-```
 
 ### Requirements
 - Node.js 18.0.0 or higher
