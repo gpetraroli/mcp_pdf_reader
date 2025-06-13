@@ -22,7 +22,31 @@ async function loadPDF(filePath) {
         
         const dataBuffer = await fs.readFile(filePath);
         const pdfParse = require("pdf-parse");
-        return await pdfParse(dataBuffer);
+        
+        // Suppress console output during PDF parsing to avoid JSON protocol interference
+        const originalConsole = {
+            log: console.log,
+            warn: console.warn,
+            error: console.error,
+            info: console.info
+        };
+        
+        // Temporarily suppress console output
+        console.log = () => {};
+        console.warn = () => {};
+        console.error = () => {};
+        console.info = () => {};
+        
+        try {
+            const result = await pdfParse(dataBuffer);
+            return result;
+        } finally {
+            // Restore original console methods
+            console.log = originalConsole.log;
+            console.warn = originalConsole.warn;
+            console.error = originalConsole.error;
+            console.info = originalConsole.info;
+        }
     } catch (error) {
         throw new Error(`Failed to load PDF: ${error.message}`);
     }
