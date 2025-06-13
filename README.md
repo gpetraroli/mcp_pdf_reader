@@ -14,7 +14,7 @@ A comprehensive Model Context Protocol (MCP) server that provides advanced PDF t
 - ✅ **Async Processing**: Non-blocking file operations
 
 ### Advanced Features
-- 🔄 **Multiple Tools**: 4 specialized tools for different PDF operations
+- 🔄 **Multiple Tools**: 3 specialized tools for different PDF operations
 - 🔍 **Smart Search**: Case-sensitive, whole-word, and regex search options
 - 📊 **Rich Metadata**: Extract author, title, creation date, keywords, and more
 - ⚡ **Performance**: Efficient processing with size limits and error handling
