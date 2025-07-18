@@ -93,12 +93,10 @@ Add to your Cursor settings:
 
 ```json
 {
-  "mcp": {
-    "servers": {
-      "mcp-gp-pdf-reader": {
-        "command": "node",
-        "args": ["/absolute/path/to/mcp_gp_pdf_reader/index.js"]
-      }
+  "mcpServers": {
+    "mcp-gp-pdf-reader": {
+      "command": "node",
+      "args": ["/absolute/path/to/mcp_gp_pdf_reader/index.js"]
     }
   }
 }
